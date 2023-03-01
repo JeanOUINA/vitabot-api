@@ -1,3 +1,5 @@
+import fetch from "node-fetch"
+
 export class Client {
     private key:string
     BASE_URL = "https://vitamin.tips/api"
@@ -34,6 +36,20 @@ export class Client {
         return json
     }
 
+    async getToken(ticker:string){
+        const token = await this.request(`/vite/get_token`, "POST", {
+            ticker
+        })
+        return token
+    }
+
+    async parseAmount(amount:string){
+        const parsed = await this.request(`/vite/parse_amount`, "POST", {
+            amount
+        })
+        return parsed
+    }
+
     async getAddresses():Promise<Address[]>{
         const addresses = await this.request("/bank/addresses")
 
@@ -68,7 +84,8 @@ export class Client {
         const tx = await this.request(`/bank/send/${transaction.from}`, "POST", {
             to: transaction.to,
             tokenId: transaction.token_id,
-            amount: transaction.amount
+            amount: transaction.amount,
+            data: transaction.data?.toString("hex") || undefined
         })
         return tx
     }
@@ -91,7 +108,8 @@ export interface TransactionRequest {
     from: string|number,
     to: string,
     amount: string,
-    token_id: string
+    token_id: string,
+    data?: Buffer
 }
 
 export interface Transaction {
