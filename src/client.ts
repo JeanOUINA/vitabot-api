@@ -119,5 +119,6 @@ export interface Transaction {
     hash: string,
     amount: string,
     token_id: string,
-    sender_handle: string
+    sender_handle: string,
+    data: string
 }
