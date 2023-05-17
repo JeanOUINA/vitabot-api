@@ -36,14 +36,14 @@ export class Client {
         return json
     }
 
-    async getToken(ticker:string){
+    async getToken(ticker:string):Promise<Token>{
         const token = await this.request(`/vite/get_token`, "POST", {
             ticker
         })
         return token
     }
 
-    async parseAmount(amount:string){
+    async parseAmount(amount:string):Promise<Amount>{
         const parsed = await this.request(`/vite/parse_amount`, "POST", {
             amount
         })
@@ -93,6 +93,17 @@ export class Client {
 
 export class ClientError extends Error {
     name = "ClientError"
+}
+
+export interface Token {
+    decimals: number,
+    token_id: string,
+    name: string,
+    currency: string
+}
+export interface Amount extends Token {
+    amount: string,
+    amount_display: string
 }
 
 export interface Balances {
