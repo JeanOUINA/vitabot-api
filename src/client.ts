@@ -36,6 +36,11 @@ export class Client {
         return json
     }
 
+    async getDiscordUserAddress(user_id:string):Promise<string>{
+        const address = await this.request(`/address/discord/${user_id}`)
+        return address.address
+    }
+
     async getToken(ticker:string):Promise<Token>{
         const token = await this.request(`/vite/get_token`, "POST", {
             ticker
