@@ -36,6 +36,11 @@ export class Client {
         return json
     }
 
+    async resolveDiscordUserFromAddress(address:string):Promise<string>{
+        const res = await this.request(`/address/resolve/discord/${address}`)
+        return res.id
+    }
+
     async getDiscordUserAddress(user_id:string):Promise<string>{
         const address = await this.request(`/address/discord/${user_id}`)
         return address.address

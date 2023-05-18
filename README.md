@@ -14,6 +14,7 @@ const amount3 = await client.parseAmount("129k VITE")
 
 // in a discord bot
 const recipient = await client.getDiscordUserAddress(message.author.id)
+const user_id = await client.resolveDiscordUserFromAddress(recipient)
 
 // Bank API
 const addresses = await client.getAddresses()
