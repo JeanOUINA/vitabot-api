@@ -52,6 +52,9 @@ client.on("message", async message => {
     }
 })
 
+client.login("Your discord bot token")
+```
+
 # WebHooks
 ```js
 import express from "express"
