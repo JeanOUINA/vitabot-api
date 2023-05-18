@@ -28,7 +28,7 @@ const transaction = await client.sendTransaction({
     token_id: amount1.token_id
 })
 ```
-# Discord Faucet Example
+# Discord Faucet Example
 ```js
 import Discord from "discord.js"
 import VitaBot from "vitabot-api"
