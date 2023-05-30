@@ -35,7 +35,7 @@ import Discord from "discord.js"
 import VitaBot from "vitabot-api"
 
 const client = new Discord.Client()
-const vitabot = new VitaBot("Your api key from vitamin.tips")
+const vitabot = new VitaBot.Client("Your api key from vitamin.tips")
 
 const amount = await vitabot.parseAmount("1 vite")
 
@@ -53,7 +53,7 @@ client.on("message", async message => {
     }
 })
 
-client.login("Your discord bot token")
+await client.login("Your discord bot token")
 ```
 
 # WebHooks
